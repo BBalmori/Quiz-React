@@ -1,0 +1,76 @@
+.App {
+
+}
+.Header {
+  text-align: center;
+  border: solid;
+}
+
+
+.Body {
+text-align: center;
+}
+.Input {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.Buttons {
+  text-align: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+}
+
+#question {
+  text-align: center;
+  color: white;
+  background-color: green;
+  font-family: Georgia, serif;
+  margin-top: 0%;
+}
+
+#img {
+  align-items: center;
+  align-self: center;
+  align-content: center;
+}
+
+#texto {
+  text-align: center;
+  width: 50%;
+  color: black;
+}
+#prev {
+  width: 8em;
+  height: 2em;
+  background-color: red;
+  color: white;
+  border-color: red;
+  font-family: Georgia, serif;
+}
+#next {
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 8em;
+  height: 2em;
+  background-color: green;
+  color: white;
+  border-color: green;
+  font-family: Georgia, serif;
+}
+#submit {
+  margin-right: 2%;
+  width: 8em;
+  height: 2em;
+  background-color: blue;
+  color: white;
+  border-color: blue;
+  font-family: Georgia, serif;
+}
+
+#tips {
+  margin-top: 1em;
+  background-color: grey;
+  color: black;
+}
