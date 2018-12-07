@@ -8,6 +8,7 @@ export default class Header extends React.Component {
     this.prevClick = this.prevClick.bind(this);
     this.nextClick = this.nextClick.bind(this);
     this.submitClick = this.submitClick.bind(this);
+
   }
   prevClick() {
     this.props.appPrevClick();
