@@ -13,7 +13,7 @@ export default class Header extends React.Component {
     this.props.appPrevClick();
   }
   nextClick() {
-      this.props.appNextClick();
+    this.props.appNextClick();
   }
   submitClick() {
     this.props.appSubmitClick();
