@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import GlobalState from './reducers';
 import { createStore } from 'redux';
-import { questions } from "../assets/random10wa.js";
+import { questions } from "../assets/mock-data.js";
 import React from 'react';
 import App from '../components/App.jsx';
 

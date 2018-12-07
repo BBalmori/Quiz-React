@@ -5,6 +5,10 @@
   text-align: center;
   border: solid;
 }
+.Game-Over {
+  text-align: center;
+  border: solid;
+}
 .BodyImg {
   text-align: center;
 }
@@ -27,6 +31,18 @@
   background-color: green;
   font-family: Georgia, serif;
   margin-top: 0%;
+}
+#go {
+  text-align: center;
+  color: white;
+  background-color: red;
+  font-family: Georgia, serif;
+  margin-top: 0%;
+}
+#punt {
+  text-align: center;
+  color: white;
+  background-color: red;
 }
 
 #img {

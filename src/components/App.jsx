@@ -5,6 +5,7 @@ import Header from './Header.jsx';
 import Botones from './Botones.jsx'
 import Body from './Body.jsx'
 import Input from './Input.jsx'
+import GameOver from './GameOver.jsx'
 import '../css/App.css';
 
 class App extends Component {
@@ -27,29 +28,38 @@ class App extends Component {
   appSubmitClick() {
     this.props.dispatch(submit(this.props.questions));
   }
-appTips() {
-    if (this.x) {
-      this.x = false;
+  appTips() {
+      if (this.x) {
+        this.x = false;
+    }
   }
-}
-appImg() {
-  if (!this.x) {
-    this.x = true;
+  appImg() {
+    if (!this.x) {
+      this.x = true;
+    }
   }
-}
 
   render() { //background-image: url("");
     console.log(this.props);
-    return(
-      <div>
-        <Header q = {this.props.questions[this.props.currentQuestion]}/>
-        <Body attach = {this.props.questions[this.props.currentQuestion]} aux={this.x}/>
-        <Input question = {this.props.questions[this.props.currentQuestion]}
-          onQuestionAnswer={(answer) => {
-            this.props.dispatch(questionAnswer(this.props.currentQuestion, answer))}} appTips={this.appTips} appImg={this.appImg}/>
-        <Botones appPrevClick={this.appPrevClick} appSubmitClick={this.appSubmitClick} appNextClick={this.appNextClick}/>
-      </div>
-    );
+    if (this.props.finished === false){
+      return(
+        <div>
+          <Header q = {this.props.questions[this.props.currentQuestion]}/>
+          <Body attach = {this.props.questions[this.props.currentQuestion]} aux={this.x}/>
+          <Input question = {this.props.questions[this.props.currentQuestion]}
+            onQuestionAnswer={(answer) => {
+              this.props.dispatch(questionAnswer(this.props.currentQuestion, answer))}} appTips={this.appTips} appImg={this.appImg}/>
+          <Botones appPrevClick={this.appPrevClick} appSubmitClick={this.appSubmitClick} appNextClick={this.appNextClick}/>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <GameOver score={this.props.score}/>
+        </div>
+      );
+
+    }
   }
 }
 
