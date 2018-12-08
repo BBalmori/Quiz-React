@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { QUESTION_ANSWER, NEXT_QUESTION, PREV_QUESTION, SUBMIT, RESET, INIT_QUESTION, IMG} from './actions'
+import { QUESTION_ANSWER, NEXT_QUESTION, PREV_QUESTION, SUBMIT, RESET } from './actions'
 
 function score(state = 0, action = {}) {
   switch (action.type) {
@@ -18,11 +18,14 @@ function score(state = 0, action = {}) {
         if (action.questions[i].answer === action.questions[i].userAnswer) {
           count++;
         }
+          action.questions[i].userAnswer = 0;
       }
       state = count;
       return state;
     case RESET:
+
       state = 0;
+
       return state;
     default:
       return state;
@@ -34,6 +37,8 @@ function finished(state = false, action = {}) {
       state = true;
       return state;
     case RESET:
+
+
       state = false;
       return state;
     default:
@@ -62,31 +67,13 @@ function currentQuestion(state = 0, action = {}) {
   }
 }
 
+
 function questions(state = [], action = {}) {
   switch (action.type) {
     case QUESTION_ANSWER:
       return state.map((question, i) => {
         return {...question, userAnswer: action.load.index === i ? action.load.answer : question.userAnswer}
       })
-    case INIT_QUESTION:
-    return state.map((questions, i) => {
-      return {questions, userAnswer: action.load.index === i ? action.load.answer : questions.userAnswer}
-    })
-    default:
-      return state;
-  }
-}
-
-function img(state = true, action = {}) {
-  switch (action.type) {
-    case IMG:
-      if (action.img === true) {
-        state = true;
-        return state;
-      } else {
-        state = false;
-        return state;
-      }
     default:
       return state;
   }
@@ -96,8 +83,7 @@ const GlobalState = (combineReducers({
   score,
   finished,
   currentQuestion,
-  questions,
-  img
+  questions
 }));
 
 export default GlobalState;
