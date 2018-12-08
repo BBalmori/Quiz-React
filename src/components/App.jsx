@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {questionAnswer, nextQuestion, prevQuestion, submit, reset} from '../redux/actions.js';
+import {questionAnswer, nextQuestion, prevQuestion, submit, reset, initQuestions, setImg} from '../redux/actions.js';
 import Header from './Header.jsx';
 import Botones from './Botones.jsx'
 import Body from './Body.jsx'
@@ -11,7 +11,7 @@ import '../css/App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.x = true;
+    this.img = true;
     this.appPrevClick = this.appPrevClick.bind(this);
     this.appNextClick = this.appNextClick.bind(this);
     this.appSubmitClick = this.appSubmitClick.bind(this);
@@ -32,16 +32,23 @@ class App extends Component {
     this.props.dispatch(reset());
     ///////HAY QUE BORRAR LAS RESPUESTAS////////
   }
-
   appTips() {
-      if (this.x) {
-        this.x = false;
-    }
+    this.img = false;
+    this.props.dispatch(setImg(this.img));
   }
   appImg() {
-    if (!this.x) {
-      this.x = true;
-    }
+    this.img = true;
+    this.props.dispatch(setImg(this.img));
+  }
+  componentDidAmount() {
+    fetch("https://quiz2019.herokuapp.com/api/quizzes/random10wa?token=5effb23b240e1ed4485d")
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        this.props.dispatch(initQuestions(JSON.parse(data)));
+        console.log(JSON.parse(data));
+      })
   }
 
   render() { //background-image: url("");
@@ -50,7 +57,7 @@ class App extends Component {
       return(
         <div>
           <Header q = {this.props.questions[this.props.currentQuestion]}/>
-          <Body attach = {this.props.questions[this.props.currentQuestion]} aux={this.x}/>
+          <Body attach = {this.props.questions[this.props.currentQuestion]} aux={this.props.img}/>
           <Input question = {this.props.questions[this.props.currentQuestion]}
             onQuestionAnswer={(answer) => {
               this.props.dispatch(questionAnswer(this.props.currentQuestion, answer))}} appTips={this.appTips} appImg={this.appImg}/>
@@ -68,12 +75,15 @@ class App extends Component {
   }
 }
 
+
+
 function mapStateToProps(state) {
   return {
     score: state.score,
     finished: state.finished,
     currentQuestion: state.currentQuestion,
-    questions: state.questions
+    questions: state.questions,
+    img: state.img
   };
 }
 

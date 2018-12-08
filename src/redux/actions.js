@@ -3,7 +3,8 @@ export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const PREV_QUESTION = 'PREV_QUESTION';
 export const SUBMIT = 'SUBMIT';
 export const RESET = 'RESET';
-//export const INIT_QUESTION = 'INIT_QUESTION';
+export const INIT_QUESTION = 'INIT_QUESTION';
+export const IMG = 'IMG';
 
 export function questionAnswer(index, answer) {
   return {type: 'QUESTION_ANSWER', load: {index, answer}};
@@ -20,8 +21,9 @@ export function submit(questions) {
 export function reset() {
   return {type: 'RESET'};
 }
-
-
-/*export function initQuestions(questions, finished) {
-  return {type: 'INIT_QUESTION', questions: questions}
-}*/
+export function initQuestions(questions) {
+  return {type: 'INIT_QUESTION', questions: questions};
+}
+export function setImg(img) {
+  return {type: 'IMG', img};
+}
